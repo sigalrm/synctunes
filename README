@@ -1,0 +1,7 @@
+A Python utility to sync an iTunes library with an Android phone.
+
+Edit the script and set paths before running it.
+
+Credit: the tool is based on a script obtained from:
+http://blog.avirtualhome.com/managing-the-itunes-library/
+authored by Peter van der Does.
