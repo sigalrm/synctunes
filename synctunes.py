@@ -121,6 +121,11 @@ print 'Found %d tracks on phone' % len(phonePaths)
 
 ########################################################################
 
+libraryLowerPaths = set([thePath.lower() for thePath in libraryPaths])
+phoneLowerPaths = set([thePath.lower() for thePath in phonePaths])
+
+########################################################################
+
 for thePath in phonePaths:
         if thePath.lower() not in libraryLowerPaths:
                 removingPaths.append(thePath)
@@ -134,9 +139,6 @@ for thePath in removingPaths:
                 os.remove(os.path.join(thePhonePath, thePath))
 
 ########################################################################
-
-libraryLowerPaths = set([thePath.lower() for thePath in libraryPaths])
-phoneLowerPaths = set([thePath.lower() for thePath in phonePaths])
 
 for thePath in libraryPaths:
         if thePath.lower() not in phoneLowerPaths:
