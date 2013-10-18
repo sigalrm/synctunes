@@ -10,10 +10,12 @@ import urllib
 import string
 import shutil
 
-theITunesDirectory = os.path.expanduser('/cygdrive/c/Users/Eamon Walsh/Music/iTunes/')
-theLibraryFile = os.path.join(theITunesDirectory, 'iTunes Music Library.xml')
-theLibraryPath = os.path.join(theITunesDirectory, 'iTunes Media/Music/')
-thePhonePath = os.path.expanduser('/cygdrive/f/Music/')
+theLibraryRealRoot = '/C:/Users/'
+theLibraryRoot = os.path.expanduser('/mnt/smb/')
+theLibraryHome = os.path.join(theLibraryRoot, 'Eamon Walsh/Music/iTunes/')
+theLibraryFile = os.path.join(theLibraryHome, 'iTunes Music Library.xml')
+theLibraryPath = os.path.join(theLibraryHome, 'iTunes Media/Music/')
+thePhonePath = os.path.expanduser('/mnt/mtp/Music/')
 
 theLibraryTracksFile = 'library.out'
 thePhoneTracksFile = 'phone.out'
@@ -83,7 +85,7 @@ for theKey in theTracks:
 #		continue
 
 	thePath = unquote(theURL.path)
-	thePath = string.replace(thePath, '/C:/', '/cygdrive/c/', 1)
+	thePath = string.replace(thePath, theLibraryRealRoot, theLibraryRoot, 1)
 	if os.path.exists(thePath) == False:
 		print 'Bad path', str(theURL.path)
 		sys.exit(1)
