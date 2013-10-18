@@ -121,6 +121,19 @@ print 'Found %d tracks on phone' % len(phonePaths)
 
 ########################################################################
 
+for thePath in phonePaths:
+        if thePath.lower() not in libraryLowerPaths:
+                print 'Would remove', thePath, 'from phone'
+                removingPaths.append(thePath)
+
+f = codecs.open(theRemovingTracksFile, 'w', 'utf-8')
+for thePath in removingPaths:
+	f.write(thePath + '\r\n')
+        if not dryRun:
+                os.remove(os.path.join(thePhonePath, thePath))
+
+########################################################################
+
 libraryLowerPaths = set([thePath.lower() for thePath in libraryPaths])
 phoneLowerPaths = set([thePath.lower() for thePath in phonePaths])
 
@@ -134,16 +147,3 @@ for thePath in addingPaths:
 	f.write(thePath + '\r\n')
         if not dryRun:
                 copyFile(thePath)
-
-########################################################################
-
-for thePath in phonePaths:
-        if thePath.lower() not in libraryLowerPaths:
-                print 'Would remove', thePath, 'from phone'
-                removingPaths.append(thePath)
-
-f = codecs.open(theRemovingTracksFile, 'w', 'utf-8')
-for thePath in removingPaths:
-	f.write(thePath + '\r\n')
-        if not dryRun:
-                os.remove(os.path.join(thePhonePath, thePath))
